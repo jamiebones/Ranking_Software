@@ -25,6 +25,10 @@
          type: String,
          label:'The id of the events'
        },
+       "eventType":{
+         type: String,
+         label:'the event type'
+       },
        "route" : {
         type: String,
         label:'The route of the competition',
@@ -47,16 +51,16 @@
         label : 'sex of the cyclist',
      },
 
+     "finishedEnteringData":{
+        type: Boolean,
+        label:"has data capture finished",
+        defaultValue: false
+     },
+
      "numOfFinishers":{
         type: Number,
         label: 'the number that finished',
         optional: true
-     },
-
-     "date" : {
-       type: String,
-       label: 'date of competition',
-       optional: true
      },
      "competitionDate":{
        type: Date,
@@ -68,49 +72,49 @@
         label: "array list of cyclist",
         optional: true
      },
+     "individual.$": Object,
      //individual cyclist represents the array holding
      //the scores of the individual cyclist
-     "individual.cyclist.$": Object,
 
-     "individual.cyclist.$.name": {
+     "individual.$.name": {
        type: String,
        label: "cyclist name",
        optional: true
      },
 
-     "individual.cyclist.$.cyclistId": {
+     "individual.$.cyclistId": {
       type: String,
       label: "cyclist id number",
       optional: true
     },
 
-    "individual.cyclist.$.regNum": {
+    "individual.$.regNum": {
       type: String,
       label: "reg number of the cyclist",
       optional: true
     },
 
-    "individual.cyclist.$.state": {
+    "individual.$.state": {
       type: String,
       label: "state of cyclist",
       optional: true
     },
 
-    "individual.cyclist.$.time": Object,
+    "individual.$.time": Object,
 
-    "individual.cyclist.$.time.hours": {
+    "individual.$.time.hours": {
       type: String,
       label: "hours",
       optional: true
     },
 
-    "individual.cyclist.$.time.minutes": {
+    "individual.$.time.minutes": {
       type: String,
       label: "minutes",
       optional: true
     },
 
-    "individual.cyclist.$.time.seconds": {
+    "individual.$.time.seconds": {
       type: String,
       label: "seconds",
       optional: true
@@ -125,65 +129,67 @@
    },
    //individual cyclist represents the array holding
    //the scores of the individual cyclist
-   "team.cyclist.$": Object,
+   "team.$": Object,
 
-   "team.cyclist.$.members": {
-     type: Array,
-     label: "array list of team members",
-     optional: true
-   },
-
-  "team.cyclist.$.members.$": Object,
-
-  "team.cyclist.$.members.$.name": {
-    type: String,
-    label: "name of the cyclist",
-    optional: true
-  },
-
-  "team.cyclist.$.members.$.regNum": {
-    type: String,
-    label: "reg number of cyclist",
-    optional: true
-  },
-
-  "team.cyclist.$.members.$.cyclistId": {
-    type: String,
-    label: "id of the cyclist",
-    optional: true
-  },
-
-  "team.cyclist.$.teamId": {
+   "team.$.teamId": {
     type: String,
     label: "teamId of the team",
     optional: true
   },
 
-  "team.cyclist.$.state": {
+  "team.$.state": {
     type: String,
     label: "state of the team",
     optional: true
   },
 
-  "team.cyclist.$.time": Object,
+  "team.$.time": Object,
 
-  "team.cyclist.$.time.st": {
+  "team.$.time.st": {
     type: String,
     label: "S/T",
     optional: true
   },
 
-  "team.cyclist.$.time.ft": {
+  "team.$.time.ft": {
     type: String,
     label: "F/T",
     optional: true
   },
 
-  "team.cyclist.$.time.at": {
+  "team.$.time.at": {
     type: String,
     label: "A/T",
     optional: true
   },
+
+   "team.$.members": {
+     type: Array,
+     label: "array list of team members",
+     optional: true
+   },
+
+  "team.$.members.$": Object,
+
+  "team.$.members.$.name": {
+    type: String,
+    label: "name of the cyclist",
+    optional: true
+  },
+
+  "team.$.members.$.regNum": {
+    type: String,
+    label: "reg number of cyclist",
+    optional: true
+  },
+
+  "team.$.members.$.cyclistId": {
+    type: String,
+    label: "id of the cyclist",
+    optional: true
+  },
+
+  
 });
 
 Competition.attachSchema( CompetitionSchema );

@@ -18,6 +18,7 @@
     import NewEvent from '../../pages/AddNewEvent/AddNewEvent';
     import AddCompetition from '../../pages/AddCompetition/AddCompetition';
     import CyclistProfile from '../../pages/AddCyclistProfile/AddCyclistProfile';
+    import CompetitionTab from '../../pages/CompetitionTab/CompetitionTab';
     import Notification from '../../../api/Notification/Notification';
     import Footer from '../../components/Footer/Footer';
     import AccountCreated from '../../components/AccountCreated/AccountCreated';
@@ -119,9 +120,9 @@
                 <Route exact name="index" path="/" component={Index} />
 
                 <Route exact name="new_event" path="/new_cyclist_profile" component={CyclistProfile} />
-
-                <Route exact name="new_event" path="/add_competition" component={AddCompetition} />
                 
+                <Route exact name="new_event" path="/add_competition" 
+                    component={CompetitionTab} />
                 
                 <Route exact name="new_event" path="/create_event" component={NewEvent} />
                 
