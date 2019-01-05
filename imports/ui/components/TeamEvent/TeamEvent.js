@@ -248,7 +248,8 @@ class TeamEventForm extends React.Component{
                                 </FormGroup>
 
                                 <FormGroup>
-                                    <Button onClick={(event)=>this.createTeam(event)}>
+                                    <Button bsStyle="success" 
+                                      onClick={(event)=>this.createTeam(event)}>
                                             Create New Team
                                     </Button>
                                 </FormGroup>

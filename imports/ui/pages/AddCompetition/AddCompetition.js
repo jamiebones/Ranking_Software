@@ -37,7 +37,6 @@ class NewCompetition extends React.Component{
 
 
     updateTeam(teamDetails){
-        debugger;
         const savedTeam = this.state.storeData;
         const { team:{teamId}} = teamDetails;
         //adding a new team here
@@ -84,7 +83,6 @@ class NewCompetition extends React.Component{
 
     render(){
         const {storeData} = this.state;
-        console.log(storeData);
         return (
             <Row>
               <Col md={8} mdOffset={2}>

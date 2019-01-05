@@ -14,6 +14,9 @@ import Competition from '../../../api/Competition/competition';
 import CompetitionCreationDetails from '../../components/CompetionDetails/CompetitionDetails';
 import AddCompetitionMembers from '../../components/AddCompetitionMembers/AddCompetitionMembers';
 
+if (Meteor.isClient){
+  import './CompetitionTab.scss';
+}
 const CompetionStyleHeader = styled.h4`
   .label {
     position: relative;
@@ -25,7 +28,7 @@ const CompetionStyleHeader = styled.h4`
 
 const CompetionStyleTabs = styled(Tabs)`
   .nav.nav-tabs {
-    
+    margin-bottom:30px;
   }
 `;
 
@@ -51,7 +54,7 @@ class CompetitionTab extends React.Component {
   render() {
     const { loading, eventTypeQuery,eventName } = this.props;
     return (!loading ? (
-      <div className="ManualUpload">
+      <div className="competitionTab">
         <Row>
           <Col md={12} sm={12} lg={12}>
            <CompetionStyleHeader className="page-header">
@@ -61,7 +64,7 @@ class CompetitionTab extends React.Component {
            onSelect={activeTab => this.setState({ activeTab })} id="manual-upload-tabs">
           <Tab eventKey="createCompetition" title="Save Competition Data">
              <Row>
-               <Col md={10} mdOffset={2}>
+               <Col md={8} mdOffset={2}>
                    <CompetitionCreationDetails 
                       eventType={this.changeEventType} 
                       changeTab={this.changeTab} 
@@ -70,9 +73,12 @@ class CompetitionTab extends React.Component {
              </Row>
           </Tab>
 
+
           <Tab eventKey="enterMembers" title="Enter Members">
-                <AddCompetitionMembers 
+             <Col md={12}>
+                 <AddCompetitionMembers 
                   unFinishedCompetitionEntry={this.props.competition} />
+              </Col>
           </Tab>
         </CompetionStyleTabs>
           </Col>

@@ -41,7 +41,6 @@ class CompetitionDetails extends React.Component{
     }
 
     handleEventType(event){
-        debugger;
         const eventType = event.target.value;
         this.setState({eventType});
         this.props.eventType(eventType);
@@ -55,7 +54,7 @@ class CompetitionDetails extends React.Component{
         const starters = this.starters.value;
         const finishers = this.finishers.value;
         const route = this.route.value;
-        const distance = this.route.value;
+        const distance = this.distance.value;
         const dateOfComp = moment(competitionDate).format();
 
         const competionDetails = {

@@ -6,6 +6,7 @@ import { Row, Col, FormGroup, ControlLabel,
 import moment from 'moment';
 import { templateParser, templateFormatter, parseDigit } from 'input-format';
 import { ReactInput } from 'input-format';
+import { Bert } from 'meteor/themeteorchef:bert';
 if (Meteor.isClient){
     import "react-datepicker/dist/react-datepicker.css";
     import './CyclistProfile.scss';

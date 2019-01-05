@@ -218,6 +218,29 @@ export const FilterReturnStoredTeamArray = (array,eventId) => {
 
 }
 
+export const RankCyclist = ( data ) => {
+    try {
+        const arr = data || [];
+        let sorted = arr.slice().sort(function(a,b){return a.time.at - b.time.at})
+        let ranks = arr.slice().map(function(v){ return sorted.indexOf(v)+1 });
+        let sortedArray = [];
+        arr.map((cyclist,index) => {
+            const obj = {
+                    data:cyclist,
+                    rank:ranks[index]
+                  }
+            sortedArray.push(obj)
+            });
+        const finalSort = sortedArray.slice().sort(function(a,b)
+                          {return a.rank - b.rank})
+        return finalSort;
+      }
+    catch (e){
+      console.log(e);
+    }
+ }
+
+ 
 
 
 

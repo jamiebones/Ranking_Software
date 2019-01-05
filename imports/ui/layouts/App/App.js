@@ -19,6 +19,8 @@
     import AddCompetition from '../../pages/AddCompetition/AddCompetition';
     import CyclistProfile from '../../pages/AddCyclistProfile/AddCyclistProfile';
     import CompetitionTab from '../../pages/CompetitionTab/CompetitionTab';
+    import ScoreSheetPage from '../../pages/ScoreSheetPage/ScoreSheetPage';
+    import ViewResult from '../../pages/ViewResult/ViewResult';
     import Notification from '../../../api/Notification/Notification';
     import Footer from '../../components/Footer/Footer';
     import AccountCreated from '../../components/AccountCreated/AccountCreated';
@@ -110,14 +112,17 @@
 
                 
 
-                 <Route path="/app" 
+               {/*  <Route path="/app" 
                   render={routeProps => <Authenticated component={LoginLayout} 
                                          {...routeProps} {...props} {...state}
                                          setAfterLoginPath={setAfterLoginPath}/> }
-                 />
+      />*/}
 
               
                 <Route exact name="index" path="/" component={Index} />
+              
+                <Route exact name="view_result" path="/result/:route/:compId/:eventId" 
+                    component={ViewResult} />
 
                 <Route exact name="new_event" path="/new_cyclist_profile" component={CyclistProfile} />
                 
@@ -125,6 +130,11 @@
                     component={CompetitionTab} />
                 
                 <Route exact name="new_event" path="/create_event" component={NewEvent} />
+
+                <Route exact name="new_event" path="/competition_results" 
+                       component={ScoreSheetPage} />
+
+
                 
                 <Public path="/signup" component={Signup} {...props} {...state} />
                 <Public path="/login" component={Login} {...props} {...state } />
