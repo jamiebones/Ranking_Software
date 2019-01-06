@@ -52,7 +52,7 @@ class CompetitionTab extends React.Component {
   }
 
   render() {
-    const { loading, eventTypeQuery,eventName } = this.props;
+    const { loading } = this.props;
     return (!loading ? (
       <div className="competitionTab">
         <Row>

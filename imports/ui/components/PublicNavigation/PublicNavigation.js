@@ -7,7 +7,7 @@ const PublicNavigation = ( ) => (
 <div>
 
       <Nav>
-          <LinkContainer to="/">
+          <LinkContainer exact to="/">
               <NavItem href="/">Home</NavItem>
           </LinkContainer>
 
@@ -26,20 +26,13 @@ const PublicNavigation = ( ) => (
           <LinkContainer to="/competition_results">
               <NavItem href="/competition_results">Results</NavItem>
           </LinkContainer>
-
-
-          
         </Nav>
     
         <Nav pullRight>
-        <LinkContainer to="/signup">
-          <NavItem eventKey={1} href="/signup">Create Account</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/login">
+          <LinkContainer to="/login">
               <NavItem eventKey={2} href="/login">Log In</NavItem>
-        </LinkContainer>
-      </Nav>
-
+          </LinkContainer>
+        </Nav>
 </div>
 );
 

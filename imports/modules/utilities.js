@@ -235,22 +235,28 @@ export const FilterReturnStoredTeamArray = (array,eventId) => {
 
 }
 
-export const RankCyclist = ( data ) => {
+export const RankCyclist = ( cycData ) => {
     try {
-        const arr = data || [];
-        let sorted = arr.slice().sort(function(a,b){return a.time.at - b.time.at})
-        let ranks = arr.slice().map(function(v){ return sorted.indexOf(v)+1 });
-        let sortedArray = [];
-        arr.map((cyclist,index) => {
-            const obj = {
-                    data:cyclist,
-                    rank:ranks[index]
-                  }
-            sortedArray.push(obj)
-            });
-        const finalSort = sortedArray.slice().sort(function(a,b)
-                          {return a.rank - b.rank})
-        return finalSort;
+        const data = cycData || [];
+        let rankedData = data.map(function(item, i) {
+          if (i > 0) {
+              //Get our previous list item
+              var prevItem = data[i - 1];
+              if (prevItem.time.at == item.time.at) {
+                  //Same score = same rank
+                  item.rank = prevItem.rank;
+              } else {
+                  //Not the same score, give em the current iterated index + 1
+                  item.rank = i + 1;
+              }
+          } else {
+              //First item takes the rank 1 spot
+              item.rank = 1;
+          }
+      
+          return item;
+      });
+      return rankedData;
       }
     catch (e){
       console.log(e);

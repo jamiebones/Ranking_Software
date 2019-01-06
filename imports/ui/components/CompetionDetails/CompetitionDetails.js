@@ -103,15 +103,15 @@ class CompetitionDetails extends React.Component{
                     <Col componentClass={ControlLabel} sm={2}>
                        Event Type
                     </Col>
-                    <Col sm={10}>
-                       <FormControl componentClass="select" 
-                        placeholder="select" 
-                        onChange={event=>this.handleEventType(event)} 
-                        ref={ eventType=>this.eventType = eventType }>
+                    <Col sm={5}>
+                       <select className="form-control"
+                         onChange={(event)=>this.handleEventType(event)} 
+                         ref={ eventType=>this.eventType = eventType }>
                             <option value="select">select</option>
                             <option value="Individual">Individual</option>
                             <option value="Team">Team</option>
-                        </FormControl>
+                       </select>
+                       
                     </Col>
                 </FormGroup>
 
@@ -151,7 +151,7 @@ class CompetitionDetails extends React.Component{
                     <Col componentClass={ControlLabel} sm={2}>
                        Distance
                     </Col>
-                    <Col sm={6}>
+                    <Col sm={5}>
                     <input className="form-control" type="text" 
                       ref={ distance=>( this.distance = distance )}/>
                     </Col>
@@ -161,7 +161,7 @@ class CompetitionDetails extends React.Component{
                     <Col componentClass={ControlLabel} sm={2}>
                        Num of Starters
                     </Col>
-                    <Col sm={6}>
+                    <Col sm={5}>
                     <input className="form-control" type="text" 
                       ref={ starters =>( this.starters = starters )}/>
                     </Col>
@@ -171,7 +171,7 @@ class CompetitionDetails extends React.Component{
                     <Col componentClass={ControlLabel} sm={2}>
                        Num of Finishers
                     </Col>
-                    <Col sm={6}>
+                    <Col sm={5}>
                     <input className="form-control" type="text" 
                       ref={ finishers =>( this.finishers = finishers )}/>
                     </Col>
@@ -181,7 +181,7 @@ class CompetitionDetails extends React.Component{
                     <Col componentClass={ControlLabel} sm={2}>
                        Cyclist Gender
                     </Col>
-                    <Col sm={6}>
+                    <Col sm={5}>
                       <FormControl componentClass="select" 
                         placeholder="select" 
                         onChange={event=>this.handleGender(event)} 

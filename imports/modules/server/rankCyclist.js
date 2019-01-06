@@ -8,21 +8,27 @@ import {_} from 'meteor/underscore';
 const RankCyclist = ( options ) => {
   return new Promise((resolve , reject ) => {
     try {
-        const { data } = options
-        const arr = data;
-        let sorted = arr.slice().sort(function(a,b){return a.time.at - b.time.at})
-        let ranks = arr.slice().map(function(v){ return sorted.indexOf(v)+1 });
-        let sortedArray = [];
-        arr.map((cyclist,index) => {
-            const obj = {
-                    data:cyclist,
-                    rank:ranks[index]
-                  }
-            sortedArray.push(obj)
-            });
-        const finalSort = sortedArray.slice().sort(function(a,b)
-                          {return a.rank - b.rank})
-        resolve(finalSort);
+        const {data} = options;
+        let rankedData = data.map(function(item, i) {
+          if (i > 0) {
+              //Get our previous list item
+              var prevItem = data[i - 1];
+              if (prevItem.time.at == item.time.at) {
+                  //Same score = same rank
+                  item.rank = prevItem.rank;
+              } else {
+                  //Not the same score, give em the current iterated index + 1
+                  item.rank = i + 1;
+              }
+          } else {
+              //First item takes the rank 1 spot
+              item.rank = 1;
+          }
+      
+          return item;
+      });
+        
+        resolve(rankedData);
       }
     catch (e){
         reject(e);
@@ -51,7 +57,7 @@ const RankCyclist = ( options ) => {
 
             //map over this and assign the scores;
             rankArray.map((cyclist) =>{
-                const membersArray = cyclist.data.members;
+                const membersArray = cyclist.members;
                 const rank = cyclist.rank;
                 if (rank == 1){
                     membersArray.map(({cyclistId})=>{
@@ -86,7 +92,7 @@ const SaveCyclistTeam = ( options ) => {
       try {
           const {data, eventId} = options;
          resolve(Competition.update(eventId,{$set:{"team": data, 
-                                                             "finishedEnteringData":true}
+                                                    "finishedEnteringData":true}
                                             })
                                             );
         }

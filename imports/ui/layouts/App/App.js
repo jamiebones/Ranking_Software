@@ -124,14 +124,14 @@
                 <Route exact name="view_result" path="/result/:route/:compId/:eventId" 
                     component={ViewResult} />
 
-                <Route exact name="new_event" path="/new_cyclist_profile" component={CyclistProfile} />
+                <Route exact name="new_cyclist_profile" path="/new_cyclist_profile" component={CyclistProfile} />
                 
-                <Route exact name="new_event" path="/add_competition" 
+                <Route exact name="add_competitio" path="/add_competition" 
                     component={CompetitionTab} />
                 
-                <Route exact name="new_event" path="/create_event" component={NewEvent} />
+                <Route exact name="create_event" path="/create_event" component={NewEvent} />
 
-                <Route exact name="new_event" path="/competition_results" 
+                <Route exact name="competion_sheets" path="/competition_results" 
                        component={ScoreSheetPage} />
 
 

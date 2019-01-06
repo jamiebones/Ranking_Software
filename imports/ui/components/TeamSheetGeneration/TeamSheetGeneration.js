@@ -1507,7 +1507,7 @@ html{
              
                 <tbody>
 
-            {team.map(({data:{teamId,state,time:{st,ft,at}, members} , rank}, index)=>{
+            {team.map(({teamId,state,time:{st,ft,at}, members, rank}, index)=>{
                     return (
                         <tr key={sumMeUp(index, 9000)}>
                             <td>
