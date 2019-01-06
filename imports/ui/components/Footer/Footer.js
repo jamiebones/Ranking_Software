@@ -6,13 +6,13 @@ if ( Meteor.isClient) import './Footer.scss';
 
 const copyrightYear = () => {
   const currentYear = year();
-  return currentYear === '2017' ? '2017' : `2017-${currentYear}`;
+  return currentYear === '2017' ? '2017' : `2018-${currentYear}`;
 };
 
 const Footer = () => (
   <div className="Footer">
     <Grid>
-      <p className="pull-left">&copy; {copyrightYear()} Erudite Scholars</p>
+      <p className="pull-left">&copy; {copyrightYear()} CFN Cyclist Ranking</p>
       <ul className="pull-right">
         {/*<li><Link to="/terms">Terms<span className="hidden-xs"> of Service</span></Link></li>
         <li><Link to="/privacy">Privacy<span className="hidden-xs"> Policy</span></Link></li>

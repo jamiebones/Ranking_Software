@@ -1,8 +1,25 @@
 
 import React from 'react';
-import { Table, Panel, Row, Col } from 'react-bootstrap';
-import {sumMeUp} from '../../../modules/utilities';
+import { Table, Panel, Row, Col, Button } from 'react-bootstrap';
+import {sumMeUp, IncludeDots} from '../../../modules/utilities';
+import { base64ToBlob } from '../../../modules/base64-to-blob.js';
+import fileSaver from 'file-saver';
+import styled from 'styled-components';
 import moment from 'moment';
+
+
+
+const ScoreSheetStyles = styled.div`
+    .resultSpan{
+        padding:5px;
+    }
+
+
+
+
+
+
+`
 
 class ScoreSheet extends React.Component{
     constructor(props){
@@ -12,49 +29,70 @@ class ScoreSheet extends React.Component{
         }
     }
 
+    downloadTeamResult(event , options ) {
+            event.preventDefault();
+            const { target } = event;
+            target.innerHTML = '<em>downloading result...</em>';
+            target.setAttribute('disabled' , 'disabled');
+            Meteor.call('utility.generateTeamResult', options , 
+            ( error, response ) => {
+              if (error) { 
+                Bert.alert(error.reason, 'danger');
+                target.innerText = 'Download Result';
+                target.removeAttribute('disabled');
+               } else
+              {
+                const blob = base64ToBlob(response.base64);
+                fileSaver.saveAs(blob, response.filename );
+                target.innerText = 'Download Result';
+                target.removeAttribute('disabled');
+              }
+            }); 
+   }
+
     render(){
         const { team, competition:{eventType, route, distance, 
                                    numOfStarters, cyclistGender,
                                    numOfFinishers, competitionDate}={}, 
                                    events:{eventName}={} } = this.props;
         return (
-            <div>
+            <ScoreSheetStyles>
 
                 <Panel>
                     <Panel.Body>
                         <Row>
                             <Col md={4}>
-                                <p>Event: {eventName}</p>
+                                <p>Event: <span className="resultSpan">{eventName}</span></p>
                             </Col>
 
                             <Col md={4}>
-                                <p>Category:{cyclistGender}</p>
+                                <p>Category:<span className="resultSpan">{cyclistGender}</span></p>
                             </Col>
 
                             <Col md={4}>
-                                <p>Route:{route}</p>
+                                <p>Route:<span className="resultSpan">{route}</span></p>
                             </Col>
 
                         </Row>
                         <Row>
                              <Col md={4}>
-                                <p>Event Type: {eventType}</p>
+                                <p>Event Type: <span className="resultSpan">{eventType}</span></p>
                             </Col>
 
                             <Col md={4}>
-                                <p>Num of Starters: {numOfStarters}</p>
+                                <p>Num of Starters: <span className="resultSpan">{numOfStarters}</span></p>
                             </Col>
 
                             <Col md={4}>
-                                <p>Num of Finishers: {numOfFinishers}</p>
+                                <p>Num of Finishers: <span className="resultSpan">{numOfFinishers}</span></p>
                             </Col>
                            
                         </Row>
                         <Row>
                             <Col md={4}>
-                               <p> Distance:{distance}</p>
+                               <p> Distance:<span className="resultSpan">{distance}</span></p>
                                 <br/>
-                                <p>Date:{moment(competitionDate).format("MMMM DD YYYY")}</p>
+                                <p>Date:<span className="resultSpan">{moment(competitionDate).format("MMMM DD YYYY")}</span></p>
                             
                             </Col>
                         </Row>
@@ -104,15 +142,15 @@ class ScoreSheet extends React.Component{
                             </td>
 
                             <td>
-                                <p>{st}</p>
+                                <p>{IncludeDots(st)}</p>
                             </td>
 
                             <td>
-                                <p>{ft}</p>
+                                <p>{IncludeDots(ft)}</p>
                             </td>
 
                             <td>
-                                <p>{at}</p>
+                                <p>{IncludeDots(at)}</p>
                             </td>
 
                             <td>
@@ -124,9 +162,19 @@ class ScoreSheet extends React.Component{
                     )
             })}
                 </tbody>
-            </Table>;
+            </Table>
 
-            </div>
+            <Button bsStyle="info" 
+                    onClick={(event)=>this.downloadTeamResult(event,{
+                    team, eventType, route, distance, 
+                    numOfStarters, cyclistGender,
+                    numOfFinishers, competitionDate, 
+                    eventName,type:"Team"
+            })}>
+                Download Result
+            </Button>
+
+            </ScoreSheetStyles>
         )
     }
 }

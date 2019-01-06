@@ -63,6 +63,23 @@
       return value;
    }
 
+   export const IncludeDots = ( time="" ) =>{
+     let timeString = time.split("")
+     let joinWords=""
+     for (let i=0; i<timeString.length; i++){
+       if ( i == 2){
+         joinWords += ':' + timeString[i];
+       }
+       else if ( i == 4){
+        joinWords += ':' + timeString[i];
+      }
+      else{
+        joinWords += timeString[i]
+      }
+     }
+     return joinWords;
+   }
+
 
    
     

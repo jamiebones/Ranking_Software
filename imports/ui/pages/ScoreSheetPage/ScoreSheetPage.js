@@ -47,7 +47,7 @@ class ScoreSheetPage extends React.Component {
     return (!loading ? (
       <div>
         <Row>
-          <Col md={12} sm={12} lg={12}>
+          <Col md={6} mdOffset={3}>
               <FormGroup>
                 <ControlLabel>Event Type</ControlLabel>
                     <FormControl componentClass="select" 
@@ -78,29 +78,27 @@ class ScoreSheetPage extends React.Component {
         </Row>
 
         <Row>
-          <Col md={12}>
+          <Col md={8} mdOffset={2}>
              {competition && competition.length ?
                 <div>
                   <Table striped hover>
                       <thead>
                         <tr>
-                          <th>#</th>
+                          <th></th>
                           <th></th>
                           <th></th>
                           <th></th>
                         </tr>
                       </thead>
                       <tbody>
-                        {competition.map((comp)=>{
+                        {competition.map((comp, index)=>{
                           return (<tr key={comp._id}>
+                                    <td><p>{index + 1}</p></td>
                                     <td><p>{comp.route}:<span>{comp.distance}</span></p></td>
                                     <td>
                                       <p>
                                         <Link to={{
                                            pathname: `/result/${comp.route}/${comp._id}/${comp.eventId}`,
-                                           state:{
-                                             competition: comp
-                                           }
                                         }}>
                                            View Report
                                         </Link>

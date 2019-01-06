@@ -69,8 +69,6 @@ class NewEvent extends React.Component{
     render(){
         return (
            <div>
-             <Row>
-               <Col md={6}>
               <FormGroup controlId="formControlsSelect">
                  <ControlLabel>Select Event Type</ControlLabel>
                     <FormControl componentClass="select" 
@@ -91,8 +89,7 @@ class NewEvent extends React.Component{
                     className="form-control"
                   />
                 </FormGroup>
-                </Col>
-                </Row>
+                
 
             <Row>
             <fieldset className="col-xs-9">    	

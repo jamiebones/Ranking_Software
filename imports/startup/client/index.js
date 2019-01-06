@@ -76,19 +76,14 @@ injectGlobal`
   
   body {
     margin-bottom: 80px;
+    margin-top:0;
     padding: 0;
     font-size: 14px;
     line-height: 20px;
     font-family: 'Certificate';
   }
 
-  .navbar {
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-  }
-
+  
   form label {
     display: block;
   }

@@ -9,7 +9,7 @@ class NewEvent extends React.Component{
     render(){
         return (
             <Row>
-              <Col md={8}>
+              <Col md={8} mdOffset={2}>
 
                 <NewEvents />
              
